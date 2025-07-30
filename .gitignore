@@ -1,6 +1,10 @@
 # Compiled class file
 *.class
 
+.DS_Store
+build
+.gradle
+
 .idea
 
 # Log file
@@ -24,3 +28,50 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+
+# Gradle build output
+/build/
+/.gradle/
+
+# Gradle Wrapper
+!gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
+
+# IntelliJ IDEA / Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# Logs
+
+# OS-specific files
+Thumbs.db
+
+# Java class files
+
+# Environment or secret files
+*.env
+.env.*
+*.keystore
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Build scan and reports
+build/
+out/
+
