@@ -28,6 +28,7 @@ public class Employee {
 
     @NonNull
     @Temporal(TemporalType.DATE)
+    @Column(name = "birth_date", nullable = false)
     private Date birthDate;
 
     @ToString.Exclude
