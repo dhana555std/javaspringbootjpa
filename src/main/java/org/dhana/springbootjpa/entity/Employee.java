@@ -2,36 +2,46 @@ package org.dhana.springbootjpa.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.dhana.springbootjpa.utils.Status;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-@Entity(name = "employee")
+@Entity
+@Table(name = "employees", schema = "training", indexes = {
+        @Index(name = "idx_employee_email", columnList = "email"),
+        @Index(name = "idx_employee_phone_number", columnList = "phone_number")},
+        uniqueConstraints = {@UniqueConstraint(name = "uc_employee_email_phone_number",
+                             columnNames = {"email", "phone_number"})})
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
-@Builder
 @EqualsAndHashCode
-@ToString
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
-
+@ToString(callSuper = true)
+@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+public class Employee extends BaseEntity {
     @NonNull
-    @Column(nullable = false, unique = true)
+    @Column(name = "email", nullable = false)
     private String email;
 
     @NonNull
+    @Column(name = "gender", nullable = false, columnDefinition = "char(1)")
     private Character gender;
 
-    @NonNull
     @Temporal(TemporalType.DATE)
-    @Column(name = "birth_date", nullable = false)
-    private Date birthDate;
+    @Column(name = "birth_date")
+    private LocalDate birthDate;
 
-    @ToString.Exclude
-    @Transient
-    private String passCode;
+    @NonNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, columnDefinition = "varchar(40)")
+    private Status status;
+
+    @NonNull
+    @Column(name = "salary", nullable = false, length = 50, scale = 2)
+    private long salary;
+
+    @NonNull
+    @Column(name = "phone_number", nullable = false, unique = true, length = 10)
+    private long phoneNumber;
 }
