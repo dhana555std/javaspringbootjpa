@@ -13,20 +13,24 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Builder
 @EqualsAndHashCode
+@ToString
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @NonNull
+    @Column(nullable = false, unique = true)
     private String email;
 
     @NonNull
     private Character gender;
 
     @NonNull
+    @Temporal(TemporalType.DATE)
     private Date birthDate;
 
+    @ToString.Exclude
     @Transient
     private String passCode;
 }

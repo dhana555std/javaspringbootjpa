@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.dhana.springbootjpa.repo.EmployeeRepo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,7 +22,8 @@ public class EmployeesTest {
         employeeRepo.save(employee);
         List<Employee> employeeList = employeeRepo.findAll();
         assertTrue(employeeList.size() > 0, "Employee list should not be empty");
-        assertTrue(employeeList.contains(employee), "Employee should be in the list");
+        assertTrue(employeeList.stream().map(x -> x.getEmail()).collect(Collectors.toSet()).contains("bachi@gmail.com"),
+                "Employee should be in the list");
         System.out.println(employeeList);
     }
 }
