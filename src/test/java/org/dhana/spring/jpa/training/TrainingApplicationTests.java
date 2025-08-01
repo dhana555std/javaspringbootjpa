@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,15 +20,22 @@ class TrainingApplicationTests {
 
 	@Test
 	void testEmployeeRepo() {
-		String email = "jaya@accionlabs.com";
-		long phone = 9191919177L;
+		String email = "lalitha@accionlabs.com";
+		long phone = 9191919178L;
 		var employee = new Employee(email, 'F',
-				LocalDate.of(1984, 3, 23),
+				LocalDate.of(1986, 3, 23),
 				phone, 9999, Status.ACTIVE);
 		employeeRepo.save(employee);
 		employeeRepo.flush();
-		var count = employeeRepo.findAll().stream().count();
+		var count = employeeRepo.findAll().size();
 		assertTrue(count > 0, "Employee list should not be empty");
+
+		var employees = employeeRepo.findAllByGender('F');
+		if (employees.isEmpty()) {
+			System.out.println("No female employees");
+		} else {
+			System.out.println("There are " + employees.get().size() + " female employees.");
+		}
 
 		Optional<Employee> matchingEmployee = employeeRepo.findByEmail(email);
 		System.out.println(matchingEmployee.get());

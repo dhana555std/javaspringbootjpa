@@ -26,6 +26,10 @@ public interface EmployeeRepo extends JpaRepository<Employee, String> {
                                                                    @Param("status") Status status,
                                                                    @Param("email") String email);
 
+    @Query(value = "Select * from employees e where e.gender=:gender",
+            nativeQuery = true)
+    Optional<List<Employee>> findAllByGender(@Param("gender") Character gender);
+
     @Modifying
     @Query("Update Employee e SET e.phoneNumber=:phoneNumber WHERE e.email=:email")
     int updatePhoneNumber(@Param("phoneNumber") long phoneNumber,

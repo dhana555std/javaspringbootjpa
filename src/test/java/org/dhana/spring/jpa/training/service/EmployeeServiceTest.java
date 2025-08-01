@@ -27,5 +27,6 @@ public class EmployeeServiceTest {
 
         int count = employeeService.updateEmployeePhoneNumber(5555555554L, "jamal@accionlabs.com");
         System.out.println("Number of employees updated: " + count);
+
     }
 }
