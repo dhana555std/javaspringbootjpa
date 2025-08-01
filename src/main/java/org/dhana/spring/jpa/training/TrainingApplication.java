@@ -1,13 +1,12 @@
-package org.dhana.springbootjpa;
+package org.dhana.spring.jpa.training;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@EnableJpaAuditing
 @SpringBootApplication
-public class SpringBootJPAApplication {
+public class TrainingApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootJPAApplication.class, args);
+		SpringApplication.run(TrainingApplication.class, args);
 	}
 }

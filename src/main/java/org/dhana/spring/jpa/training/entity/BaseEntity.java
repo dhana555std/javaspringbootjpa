@@ -1,11 +1,7 @@
-package org.dhana.springbootjpa.entity;
+package org.dhana.spring.jpa.training.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -13,11 +9,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@MappedSuperclass
 @Getter
 @Setter
+@MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity implements Serializable {
     @Id
@@ -28,8 +25,8 @@ public abstract class BaseEntity implements Serializable {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @Version
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
-
 }
