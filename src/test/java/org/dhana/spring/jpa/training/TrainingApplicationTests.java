@@ -20,7 +20,7 @@ class TrainingApplicationTests {
 
 	@Test
 	void testEmployeeRepo() {
-		String email = "lalitha@accionlabs.com";
+		String email = "bujji@accionlabs.com";
 		long phone = 9191919178L;
 		var employee = new Employee(email, 'F',
 				LocalDate.of(1986, 3, 23),
@@ -29,6 +29,9 @@ class TrainingApplicationTests {
 		employeeRepo.flush();
 		var count = employeeRepo.findAll().size();
 		assertTrue(count > 0, "Employee list should not be empty");
+
+		var dto = employeeRepo.findPhoneAndEmailById(employee.getId());
+		System.out.println("Phone: " + dto.phoneNumber() + ", Email: " + dto.email());
 
 		var employees = employeeRepo.findAllByGender('F');
 		if (employees.isEmpty()) {
@@ -43,7 +46,5 @@ class TrainingApplicationTests {
 
 		var matchList = employeeRepo.findByEmailContainingIgnoreCaseOrderByEmail("ja");
 		assertTrue(matchList.isPresent(), "There are matching employees whose email contains 'ja'");
-
-
 	}
 }

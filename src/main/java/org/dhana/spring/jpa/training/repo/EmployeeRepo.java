@@ -1,7 +1,10 @@
 package org.dhana.spring.jpa.training.repo;
 
+import org.dhana.spring.jpa.training.dto.EmailPhoneResponseEntity;
 import org.dhana.spring.jpa.training.entity.Employee;
 import org.dhana.spring.jpa.training.utility.Status;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -34,4 +37,8 @@ public interface EmployeeRepo extends JpaRepository<Employee, String> {
     @Query("Update Employee e SET e.phoneNumber=:phoneNumber WHERE e.email=:email")
     int updatePhoneNumber(@Param("phoneNumber") long phoneNumber,
                            @Param("email") String email);
+
+    @Query(value = "Select new org.dhana.spring.jpa.training.dto.EmailPhoneResponseEntity(e.email, e.phoneNumber)" +
+            " from Employee e where e.id=:id")
+    EmailPhoneResponseEntity findPhoneAndEmailById(@Param("id") String id);
 }

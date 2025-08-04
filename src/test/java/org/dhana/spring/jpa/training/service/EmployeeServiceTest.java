@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @SpringBootTest
 public class EmployeeServiceTest {
     @Autowired
@@ -27,6 +29,13 @@ public class EmployeeServiceTest {
 
         int count = employeeService.updateEmployeePhoneNumber(5555555554L, "jamal@accionlabs.com");
         System.out.println("Number of employees updated: " + count);
+
+        var pageList = employeeService.findAll();
+        assertEquals(2, pageList.get().count(), "There should be 5 employees in the list");
+
+        for (var employee : pageList) {
+            System.out.println("Employee: " + employee.getEmail() + ", Phone: " + employee.getPhoneNumber());
+        }
 
     }
 }

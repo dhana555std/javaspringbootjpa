@@ -5,6 +5,9 @@ import org.dhana.spring.jpa.training.entity.Employee;
 import org.dhana.spring.jpa.training.repo.EmployeeRepo;
 import org.dhana.spring.jpa.training.utility.Status;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,5 +34,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepo.updatePhoneNumber(phoneNumber,email);
     }
 
-
+    @Override
+    public Page<Employee> findAll() {
+        return employeeRepo.findAll(PageRequest.of(0, 2));
+    }
 }
