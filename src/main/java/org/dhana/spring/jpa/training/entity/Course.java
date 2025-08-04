@@ -2,7 +2,13 @@ package org.dhana.spring.jpa.training.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import lombok.*;
+
+import java.util.List;
+
+import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
@@ -12,8 +18,11 @@ import lombok.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode
-public class Courses extends BaseEntity {
+public class Course extends BaseEntity {
     @NonNull
     @Column(name = "course_name", nullable = false, unique = true)
     private String courseName;
+
+    @ManyToMany(mappedBy = "courses", cascade = ALL, fetch = LAZY)
+    private List<Employee> employees;
 }

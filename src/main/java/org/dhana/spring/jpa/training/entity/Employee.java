@@ -5,6 +5,7 @@ import lombok.*;
 import org.dhana.spring.jpa.training.utils.Status;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static jakarta.persistence.GenerationType.UUID;
 
@@ -61,8 +62,17 @@ public class Employee extends BaseEntity{
             unique = true)
     private Passport passport;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "department_name", referencedColumnName = "department_name",
             foreignKey = @ForeignKey(name = "fk_employee_department"))
     private Department department;
+
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "employee_course",
+               joinColumns = @JoinColumn(name = "employee_email", referencedColumnName = "email"),
+               inverseJoinColumns = @JoinColumn(name = "course_name", referencedColumnName = "course_name"),
+               foreignKey = @ForeignKey(name = "fk_employee_course_employee"),
+               inverseForeignKey = @ForeignKey(name = "fk_employee_course_course"))
+    private List<Course> courses;
 }
