@@ -1,7 +1,7 @@
 package org.dhana.spring.jpa.training.service;
 
 import org.dhana.spring.jpa.training.entity.Employee;
-import org.dhana.spring.jpa.training.utility.Status;
+import org.dhana.spring.jpa.training.utils.Status;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

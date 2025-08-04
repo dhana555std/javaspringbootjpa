@@ -2,7 +2,7 @@ package org.dhana.spring.jpa.training.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.dhana.spring.jpa.training.utility.Status;
+import org.dhana.spring.jpa.training.utils.Status;
 
 import java.time.LocalDate;
 
@@ -55,4 +55,14 @@ public class Employee extends BaseEntity{
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status status;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "passport_number", referencedColumnName = "passport_number",
+            unique = true)
+    private Passport passport;
+
+    @ManyToOne
+    @JoinColumn(name = "department_name", referencedColumnName = "department_name",
+            foreignKey = @ForeignKey(name = "fk_employee_department"))
+    private Department department;
 }

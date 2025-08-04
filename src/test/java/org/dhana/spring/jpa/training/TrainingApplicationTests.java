@@ -2,13 +2,12 @@ package org.dhana.spring.jpa.training;
 
 import org.dhana.spring.jpa.training.entity.Employee;
 import org.dhana.spring.jpa.training.repo.EmployeeRepo;
-import org.dhana.spring.jpa.training.utility.Status;
+import org.dhana.spring.jpa.training.utils.Status;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,8 +19,8 @@ class TrainingApplicationTests {
 
 	@Test
 	void testEmployeeRepo() {
-		String email = "bujji@accionlabs.com";
-		long phone = 9191919178L;
+		String email = "jamal@accionlabs.com";
+		long phone = 9191919079L;
 		var employee = new Employee(email, 'F',
 				LocalDate.of(1986, 3, 23),
 				phone, 9999, Status.ACTIVE);

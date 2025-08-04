@@ -1,6 +1,6 @@
 package org.dhana.spring.jpa.training.service;
 
-import org.dhana.spring.jpa.training.utility.Status;
+import org.dhana.spring.jpa.training.utils.Status;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,7 +31,7 @@ public class EmployeeServiceTest {
         System.out.println("Number of employees updated: " + count);
 
         var pageList = employeeService.findAll();
-        assertEquals(2, pageList.get().count(), "There should be 5 employees in the list");
+        assertEquals(2, pageList.get().count(), "There should be 2 employees in the list");
 
         for (var employee : pageList) {
             System.out.println("Employee: " + employee.getEmail() + ", Phone: " + employee.getPhoneNumber());

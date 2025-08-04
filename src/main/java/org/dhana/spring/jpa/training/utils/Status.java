@@ -1,4 +1,4 @@
-package org.dhana.spring.jpa.training.utility;
+package org.dhana.spring.jpa.training.utils;
 
 public enum Status {
     ACTIVE,
